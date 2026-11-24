@@ -4,12 +4,6 @@ variable "environment_name" {
   default     = "dev"
 }
 
-variable "eks_cluster_name" {
-  description = "EKS cluster name used for subnet discovery tags; null disables them"
-  type        = string
-  default     = null
-}
-
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
