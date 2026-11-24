@@ -42,10 +42,15 @@ resource "aws_eks_cluster" "main" {
   ]
 
   # Ensure IAM policy attachments complete before cluster creation
+
   depends_on = [
-    aws_iam_role_policy_attachment.eks_cluster_policy,
-    aws_iam_role_policy_attachment.eks_vpc_resource_controller
-  ]
+  aws_iam_role_policy_attachment.eks_cluster_policy,
+  aws_iam_role_policy_attachment.eks_vpc_resource_controller,
+  aws_ec2_tag.eks_subnet_tag_public_elb,
+  aws_ec2_tag.eks_subnet_tag_public_cluster,
+  aws_ec2_tag.eks_subnet_tag_private_elb,
+  aws_ec2_tag.eks_subnet_tag_private_cluster
+]
 
   # Common tags applied to the EKS cluster
   tags = var.tags
